@@ -1,5 +1,11 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure Kestrel to listen on port 80
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(80); // Listen on port 80
+});
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -14,7 +20,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// Comment out or remove the HTTPS redirection
+// app.UseHttpsRedirection();
 
 var summaries = new[]
 {
